@@ -1,10 +1,14 @@
 {
-  "name": "my-project-devcontainer",
+  "name": "Hasura DDN Dev Container with Docker-in-Docker",
   "image": "mcr.microsoft.com/devcontainers/base:ubuntu", // Any generic, debian-based image.
   "features": {
     "ghcr.io/devcontainers/features/docker-in-docker:1": {
       "version": "latest",
       "moby": true
+    },
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "20",
+      "additionalVersions": "18"
     }
   },
   "customizations": {
@@ -14,8 +18,12 @@
         "terminal.integrated.shell.linux": "/bin/bash",
         "terminal.integrated.shellArgs.linux": ["-l"]
       }
+    },
+    "codespaces": {
+      "openFiles": ["CODESPACE_QUICKSTART.md"]
     }
   },
+
   "secrets": {
     "HASURA_PAT": {
       "description": "Set Hasura PAT for CLI authentication",
