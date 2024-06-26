@@ -13,5 +13,14 @@
     }
   },
   "name": "Hasura DDN Codespace with Docker",
-  "postCreateCommand": "curl -L https://graphql-engine-cdn.hasura.io/ddn/cli/v1/get.sh | bash && sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - && sudo add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable' && sudo apt-get update && sudo apt-get install -y docker-ce"
+  "postCreateCommand": [
+    "curl -L https://graphql-engine-cdn.hasura.io/ddn/cli/v2/get.sh | bash",
+    "if [ $? -ne 0 ]; then echo 'Failed to install ddn CLI'; fi",
+    "sudo apt-get update",
+    "sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common",
+    "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -",
+    "sudo add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable'",
+    "sudo apt-get update",
+    "sudo apt-get install -y docker-ce"
+  ]
 }
