@@ -1,4 +1,5 @@
 {
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu",
   "customizations": {
     "vscode": {
       "extensions": ["HasuraHQ.hasura"],
@@ -16,8 +17,24 @@
     }
   },
   "name": "Hasura DDN Codespace with Docker",
-  "build": {
-    "dockerfile": "./Dockerfile",
-    "context": "."
-  }
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:1": {
+      "installZsh": "false",
+      "installOhMyZsh": "false",
+      "username": "dev",
+      "userUid": "1000",
+      "userGid": "1000",
+      "sudoUsername": "true"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:1": {}
+  },
+  "postCreateCommand": "curl -L https://graphql-engine-cdn.hasura.io/ddn/cli/v2/get.sh | bash && ddn auth login --pat $CODESPACES_SECRET_HASURA_PAT",
+  "remoteEnv": {
+    "DOCKER_HOST": "tcp://localhost:2375"
+  },
+  "overrideCommand": false,
+  "runArgs": [
+    "--privileged",
+    "--init"
+  ]
 }
