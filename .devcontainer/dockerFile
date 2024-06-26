@@ -33,5 +33,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
 # Switch to non-root user (optional)
 USER $USERNAME
 
+# Run Hasura CLI login command as non-root user
+RUN ddn auth login --pat $CODESPACES_SECRET_HASURA_PAT
+
 # Set the shell to bash
 CMD ["bash"]

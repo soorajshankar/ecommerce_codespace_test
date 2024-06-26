@@ -4,7 +4,14 @@
       "extensions": ["HasuraHQ.hasura"],
       "settings": {
         "terminal.integrated.shell.linux": "/bin/bash",
-        "terminal.integrated.shellArgs.linux": ["-l"]
+        "terminal.integrated.shellArgs.linux": ["-l"],
+        "terminal.integrated.defaultProfile.linux": "/bin/bash",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "/bin/bash",
+            "args": ["-l"]
+          }
+        }
       }
     }
   },
@@ -12,6 +19,5 @@
   "build": {
     "dockerfile": "./Dockerfile",
     "context": "."
-  },
-  "postCreateCommand": "ddn auth login --pat $CODESPACES_SECRET_HASURA_PAT"
+  }
 }
