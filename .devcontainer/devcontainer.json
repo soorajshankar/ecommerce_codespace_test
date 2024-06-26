@@ -1,19 +1,22 @@
 {
-  "name": "Hasura DDN Codespace with Docker",
-  "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu-20.04",
   "customizations": {
     "vscode": {
-      "extensions": [
-        "HasuraHQ.hasura"
-      ],
+      "extensions": ["HasuraHQ.hasura"],
       "settings": {
         "terminal.integrated.shell.linux": "/bin/bash",
-        "terminal.integrated.shellArgs.linux": [
-          "-l"
-        ]
+        "terminal.integrated.shellArgs.linux": ["-l"]
       }
     }
   },
+  "name": "Hasura DDN Codespace with Docker",
   "postCreateCommand": [
     "sudo apt-get update",
-    "sudo apt-get
+    "sudo apt-get install -y apt-transport-https ca-certificates curl software-properties-common",
+    "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -",
+    "sudo add-apt-repository 'deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable'",
+    "sudo apt-get update",
+    "sudo apt-get install -y docker-ce",
+    "curl -L https://graphql-engine-cdn.hasura.io/ddn/cli/v2/get.sh | bash",
+    "ddn auth login --pat ${{ secrets.hasura-pat }}"
+  ]
+}
