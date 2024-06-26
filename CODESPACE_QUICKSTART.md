@@ -15,6 +15,7 @@ This will run several docker services and can be checked at the bottom of the sc
 
 ![alt text](images/ports.png)
 
+> Update the port visibility 
 
 2. start the TS function runtime
 
@@ -25,8 +26,15 @@ cd sales/connector/ts && npm i
 npx dotenv -e .env.local -- npm run watch
 ```
 
+- Update the port 3000 to have public port visibility to `PUBLIC` as shown below to leverage the Hasura console, without this you can still use the plain GraphiQL UI running on 3000 where you can execute queries but not use any of the Hasura console features.
 
-- Open console with this URL https://console.hasura.io/local/graphql?url=http://localhost:3000 and test using GraphQL API queries from the [Composability folder](https://github.com/hasura/ddn_beta_ecommerce/tree/main/Composability).
+![alt text](images/port_visibility.png)
+
+- Open console with this URL https://console.hasura.io/local/graphql?url=https://<your-github-app-url>.app.github.dev/ and test using GraphQL API queries from the [Composability folder](https://github.com/hasura/ddn_beta_ecommerce/tree/main/Composability).
+
+
+
+
   - For [AuthZ](https://github.com/hasura/ddn_beta_ecommerce/blob/main/Composability/authZ.graphQL): Set x-hasura-role = customer and x-hasura-user-id = some_user_id and run the AuthZ query
 
 This example supergraph is composed of four subgraphs - users, analytics, experience, and sales, each backed by one or more data connectors. These subgraphs integrate various data sources to provide a comprehensive Ecommerce solution as follows.
