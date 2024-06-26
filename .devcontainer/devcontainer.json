@@ -9,5 +9,6 @@
       "version": "latest",
       "moby": true
     }
-  }
+  },
+  "postCreateCommand": "curl -L https://graphql-engine-cdn.hasura.io/ddn/cli/v2/get.sh | bash && ddn auth login --pat $HASURA_PAT"
 }
