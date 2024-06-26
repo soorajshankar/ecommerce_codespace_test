@@ -1,6 +1,6 @@
 {
   "name": "Hasura DDN Codespace with Docker",
-  "image": "mcr.microsoft.com/vscode/devcontainers/docker:0-ubuntu-20.04",
+  "image": "mcr.microsoft.com/vscode/devcontainers/base:ubuntu-20.04",
   "customizations": {
     "vscode": {
       "extensions": [
@@ -15,7 +15,5 @@
     }
   },
   "postCreateCommand": [
-    "curl -L https://graphql-engine-cdn.hasura.io/ddn/cli/v1/get.sh | bash",
-    "ddn auth login --pat ${secrets.HASURA_PAT}"
-  ]
-}
+    "sudo apt-get update",
+    "sudo apt-get
